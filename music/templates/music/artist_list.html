@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Artists{% endblock %}
+
+{% block content %}
+<h1>Artists</h1>
+
+<div class="mb-3 d-flex gap-2">
+  <form method="post" action="{% url 'music:artist-boost' %}">
+    {% csrf_token %}
+    <button class="btn btn-warning" type="submit">Boost +1000 (followers &lt; 500k)</button>
+  </form>
+</div>
+
+<form method="get" class="row g-2 mb-3">
+  <div class="col-md-5">
+    <input class="form-control" name="name" placeholder="name..." value="{{ request.GET.name }}">
+  </div>
+  <div class="col-md-5">
+    <select class="form-select" name="sort">
+      <option value="">sort...</option>
+      <option value="name">name</option>
+      <option value="-name">name desc</option>
+      <option value="followers">followers</option>
+      <option value="-followers">followers desc</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-outline-secondary w-100">Go</button>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <tr><th>Name</th><th>Followers</th></tr>
+  {% for a in artists %}
+    <tr><td>{{ a.name }}</td><td>{{ a.followers }}</td></tr>
+  {% empty %}
+    <tr><td colspan="2">No artists</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

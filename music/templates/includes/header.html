@@ -1,0 +1,10 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'music:artist-list' %}">Music</a>
+    <div class="navbar-nav flex-row gap-3">
+      <a class="nav-link" href="{% url 'music:artist-list' %}">Artists</a>
+      <a class="nav-link" href="{% url 'music:track-list' %}">Tracks</a>
+      <a class="nav-link" href="{% url 'music:artist-q' %}">Q practice</a>
+    </div>
+  </div>
+</nav>

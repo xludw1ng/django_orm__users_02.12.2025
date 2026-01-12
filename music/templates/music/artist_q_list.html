@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Q practice{% endblock %}
+{% block content %}
+<h1>Q practice</h1>
+
+<form method="get" class="row g-2 mb-3">
+  <div class="col-md-5">
+    <input class="form-control" name="q" placeholder="name contains..." value="{{ request.GET.q }}">
+  </div>
+  <div class="col-md-5">
+    <input class="form-control" name="min" placeholder="OR followers >= ..." value="{{ request.GET.min }}">
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-outline-secondary w-100">Search</button>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <tr><th>Name</th><th>Followers</th></tr>
+  {% for a in artists %}
+    <tr><td>{{ a.name }}</td><td>{{ a.followers }}</td></tr>
+  {% empty %}
+    <tr><td colspan="2">No results</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}
