@@ -18,10 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 
+from users.views import RegisterView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('music/', include('music.urls')),
+    path("auth/register/", RegisterView.as_view(), name="register"),
+    path("auth/", include("django.contrib.auth.urls")),
 ]
 
 if settings.DEBUG:

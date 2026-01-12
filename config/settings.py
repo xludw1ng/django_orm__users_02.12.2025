@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'music.apps.MusicConfig',
     'django_bootstrap5',
-    'debug_toolbar'
+    'debug_toolbar',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -90,6 +91,11 @@ DATABASES = {
 }
 
 FORM_RENDERER = "django.forms.renderers.DjangoTemplates"
+
+LOGIN_REDIRECT_URL = "/music/artists/"
+LOGOUT_REDIRECT_URL = "/auth/login/"
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
 # Password validation

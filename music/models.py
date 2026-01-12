@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 import uuid
 
 
@@ -23,6 +24,12 @@ class BaseModel(models.Model):
 
 
 class Artist(BaseModel):
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="artists",
+        null=True, blank=True
+    )
     name = models.CharField("Имя артиста", max_length=255)
     followers = models.IntegerField("Подписчики", default=0)
 
@@ -35,15 +42,16 @@ class Artist(BaseModel):
 
 
 class Track(BaseModel):
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="tracks",
+        null=True, blank=True
+    )
     name = models.CharField("Название трека", max_length=255)
     release_date = models.DateField("Дата выхода")
     duration = models.FloatField("Длительность (сек)")
-    artist = models.ForeignKey(
-        Artist,
-        on_delete=models.CASCADE,
-        related_name='tracks',
-        verbose_name="Артист"
-    )
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name="tracks")
 
     class Meta:
         verbose_name = "Трек"

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Track detail{% endblock %}
+
+{% block content %}
+<h1>{{ track.name }}</h1>
+<p>Artist: {{ track.artist.name }}</p>
+<p>Release: {{ track.release_date }}</p>
+<p>Duration: {{ track.duration }}</p>
+
+<a class="btn btn-secondary" href="{% url 'music:track-list' %}">Back</a>
+<a class="btn btn-danger" href="{% url 'music:track-delete' track.id %}">Delete</a>
+{% endblock %}

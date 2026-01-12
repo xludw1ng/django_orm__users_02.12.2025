@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Artist detail{% endblock %}
+
+{% block content %}
+<h1>{{ artist.name }}</h1>
+<p>Followers: {{ artist.followers }}</p>
+
+<a class="btn btn-secondary" href="{% url 'music:artist-list' %}">Back</a>
+<a class="btn btn-danger" href="{% url 'music:artist-delete' artist.id %}">Delete</a>
+{% endblock %}
